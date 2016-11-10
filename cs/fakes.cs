@@ -6,28 +6,24 @@ using NSubstitute;
 public class TestDoubleTests {
 
   [TestMethod]
-  public void Should_Calculate_PoperValue() {
-
+  public void should_build_a_greeting_base_on_age() {
     IDataService ds = Substitute.For<IDataService>();
+    ds.GetMessageBaseOnAge( 45 ).Returns( "Whazzup" );
+    Greeting1 sut = new Greeting1( ds );
 
-    ds.LookupMultiplier().Returns( 2 );
+    string actual = sut.Build( "Joe", 45 );
 
-    Foo f = new Foo( ds );
-
-    int actual = f.CalculateValueWithDataLookup( 5 );
-
-    Assert.AreEqual( 10, actual );
+    Assert.AreEqual( "Whazzup, Joe!", actual );
   }
 
   [TestMethod]
-  public void Should_Send_AnEmail() {
-
+  public void should_send_an_email_message() {
     IEmailService es = Substitute.For<IEmailService>();
+    Greeting2 sut = new Greeting2( es );
 
-    Bar b = new Bar( es );
+    sut.SayHello( "Joe" );
 
-    b.DoSomethingThatSendsAnEmail();
-
-    es.Received().Send( "message sent via email" );
+    es.Received().SendEmail( "Whatup, Joe!" );
   }
 }
+
