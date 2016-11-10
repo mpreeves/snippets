@@ -1,8 +1,9 @@
 using System;
+using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 [TestClass]
-public class SharedFixtureManagement {
+public class LifecycleTests {
 
   [TestInitialize]
   public void SetUp() {

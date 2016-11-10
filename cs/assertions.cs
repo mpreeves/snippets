@@ -15,9 +15,9 @@ public class AssertionExamples {
   [TestMethod]
   public void state_based_assertion() {
 
-    GreetingBuilder gb = new GreetingBuilder();
+    GreetingBuilder sut = new GreetingBuilder();
 
-    gb.Build();
+    sut.Build();
 
     Assert.AreEqual("Hello, World", g.Message);
   }
@@ -26,14 +26,14 @@ public class AssertionExamples {
   public void interaction_based_assertion() {
 
     IEmailService emailService =
-        Substitute.For<IEmailService>();
+      Substitute.For<IEmailService>();
 
     Message expectedMessage =
-	new Message( "joe@email.com", "Hello, World" )
+      new Message( "joe@email.com", "Hello, World" )
 
-    GreetingSender gs = new GreetingSender( emailService );
+    GreetingSender sut = new GreetingSender( emailService );
 
-    gs.SendTo( "joe@email.com" );
+    sut.SendTo( "joe@email.com" );
 
     emailService.Received().Send( Arg.Is( expectedMessage ) );
   }

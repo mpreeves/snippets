@@ -1,7 +1,5 @@
 describe( "life cycle tests", function() {
 
-  var shared_data = null
-
   beforeEach( function() {
     console.log( "before each" );
   } )
