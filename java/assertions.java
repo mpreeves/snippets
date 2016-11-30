@@ -5,7 +5,7 @@ public class AssertionTests {
 
     String message = GreetingBuilder.build();
 
-    areEquals( "Hello, World", message );
+    assertEquals( "Hello, World", message );
   }
 
   @Test
@@ -15,7 +15,7 @@ public class AssertionTests {
 
     sut.build();
 
-    Assert.AreEqual( "Hello, World", sut.getMessage() );
+    assertEquals( "Hello, World", sut.getMessage() );
   }
 
   @Test
