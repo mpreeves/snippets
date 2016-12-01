@@ -3,31 +3,30 @@ public class AssertionTests {
   @Test
   public void return_based_assertion() {
 
-    String message = GreetingBuilder.Build();
+    String message = GreetingBuilder.build();
 
-    Assert.AreEqual( "Hello, World", message );
+    assertEquals( "Hello, World", message );
   }
 
   @Test
   public void state_based_assertion() {
 
-    GreetingBuilder gb = new GreetingBuilder();
+    GreetingBuilder sut = new GreetingBuilder();
 
-    gb.Build();
+    sut.build();
 
-    Assert.AreEqual( "Hello, World", g.Message );
+    assertEquals( "Hello, World", sut.getMessage() );
   }
 
-  [TestMethod]
+  @Test
   public void interaction_based_assertion() {
 
-    IEmailService emailService = Substitute.For<IEmailService>();
-    Message expectedMessage = new Message( "joe@email.com", "Hello, World" )
-    GreetingSender gs = new GreetingSender( emailService );
+    EmailService es = mock( EmailService.class );
+    GreetingBuilder sut = new GreetingBuilder( es );
 
-    gs.SendTo( "joe@email.com" );
+    sut.sayHello( "Joe" );
 
-    emailService.Received().Send( Arg.Is( expectedMessage ) );
+    verify( es ).sendEmail( "Whazzup, Joe!" );
   }
 
 }
