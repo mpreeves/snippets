@@ -7,8 +7,8 @@ public class Program {
   public static void Main(string[] args) {
 
     if (new CoolNewFeature().FeatureEnabled)
-      Console.WriteList("Hello, World!");
+      Console.WriteLine("Hello, World!");
     else
-      Console.WriteList("Whatup, World!");
+      Console.WriteLine("Whatup, World!");
   }
 }
